@@ -14,12 +14,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "githelper.helloWorld",
-        "title": "Hello World"
+        "command": "githelper.init",
+        "title": "githelper:init"
       },
       {
         "command": "githelper.ListSubModules",
-        "title": "ListSubModules"
+        "title": "githelper:ListSubModules"
+      },
+      {
+        "command": "githelper.restoreSubModule",
+        "title": "githelper:restoreSubModule"
       }
     ]
   },
