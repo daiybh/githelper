@@ -1,15 +1,25 @@
 {
   "name": "githelper",
   "displayName": "GitHelper",
-  "description": "",
+  "description": "a GitHelper for simplylive.restore submodules,update all submodules,update all git(project) to head.",
   "version": "0.0.1",
+	"publisher": "daiybh",
+	"repository": "https://github.com/daiybh/githelper",
+	"license": "MIT",
   "engines": {
     "vscode": "^1.77.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "keywords": [
+		"git",
+		"submodule",
+		"helper"
+	],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -24,6 +34,10 @@
       {
         "command": "githelper.restoreSubModule",
         "title": "githelper:restoreSubModule"
+      },
+      {
+        "command": "githelper.pullALLCommand",
+        "title": "githelper:pullALLCommand"
       }
     ]
   },
@@ -32,8 +46,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "lint:fix": "eslint --fix src/**/*.ts"
   },
   "devDependencies": {
     "@types/vscode": "^1.77.0",
