@@ -124,9 +124,18 @@ const pullALLCommand = (): vscode.Disposable => {
 		Logger.showOutput();
 		Logger.showMessage("githelper.pullALLCommand");
 
+		
+		exec('git pull', { cwd: getWorkspacePath() }, (error: any, stdout: any, _stderr: any) => {
+			if (error !== null) {
+				Logger.showError(error);
+			}
+			//异步调用 结果会晚于 pullALLCommand22222222
+			Logger.showMessage(stdout.trim());
+		});
 
-
-		await CMD.executeCommand('git pull');
+		// 同步调用
+		//await CMD.executeCommand('git pull');
+		Logger.showMessage("githelper.pullALLCommand22222222");
 	});
 };
 
