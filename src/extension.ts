@@ -73,6 +73,17 @@ async function runCommand(cmd: any) {
   }
 }
 
+function ExeCCommand(command:any):void{
+	exec(command, { cwd: getWorkspacePath() }, (error: any, stdout: any, _stderr: any) => {
+		if (error !== null) {
+			Logger.showError(error);
+		}
+		//异步调用 结果会晚于 pullALLCommand22222222
+		Logger.showMessage(stdout.trim());
+	});
+
+}
+
 const restoreSubModule = (): vscode.Disposable => {
 	/*
 https://stackoverflow.com/questions/11258737/restore-git-submodules-from-gitmodules
@@ -85,6 +96,14 @@ git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
 		git submodule add $url $path
 	done
 	/**/
+
+	const restoreCMD=`"git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
+	while read path_key path
+	do
+		url_key=$(echo $path_key | sed 's/\.path/.url/')
+		url=$(git config -f .gitmodules --get "$url_key")
+		git submodule add $url $path
+	done"`;
 	return vscode.commands.registerCommand('githelper.restoreSubModule', () => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
@@ -96,7 +115,10 @@ git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
 			Logger.showMessage(`'restoreSubModule ! ${getWorkspacePath() + '/.gitmodules'} ${err ? 'does not exist' : 'exists'}`, true);
 
 			if (err) { return; }
-			await CMD.executeCommand('git submodule update --init');
+			//await CMD.executeCommand('git submodule update --init');
+			ExeCCommand(restoreCMD);
+
+			Logger.showMessage("restore done");
 		});
 	});
 };
@@ -115,7 +137,6 @@ const listSubModulesCommand = (): vscode.Disposable => {
 		});
 	});
 };
-
 
 const pullALLCommand = (): vscode.Disposable => {
 	return vscode.commands.registerCommand('githelper.pullALLCommand', async () => {
