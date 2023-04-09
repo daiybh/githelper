@@ -2,13 +2,70 @@
 
 This is the README for your extension "githelper". After writing up a brief description, we recommend including the following sections.
 
-1. init Extension
+It can monitor all folders in current workspace.
+ex: code opend "d:\\smallcodes"
+   there have
+   ``` 
+   dir d:\\smallcodes
 
-2. add commands
+   project1\
+      .git
 
-   listALLSubmodule
+   project2\
+      .git
+      .gitmodules
 
-   restoreSubmodule
+   project3\
+      [none GIt]
+   ```
 
-3. add status bar.
+Project1 Project2 will be selectd.
 
+
+## init Extension
+
+## add commands
+
+   - [X] listALLSubmodule
+
+   - [] restoreSubmodule
+
+      when we clone[use git cmd] one project from remote, this project with submodule,but we need restore it.
+
+   ``` bash restoreSubmodule
+
+      git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
+	while read path_key path
+	do
+		url_key=$(echo $path_key | sed 's/\.path/.url/')
+		url=$(git config -f .gitmodules --get "$url_key")
+		git submodule add $url $path
+	done
+
+   ```
+     
+
+   - [] updateSubmodule
+
+      update all submodule to HEAD.
+
+## add status bar.
+
+
+
+
+# scripts
+
+All scripts
+
+``` bash restoreSubmodule
+
+      git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
+	while read path_key path
+	do
+		url_key=$(echo $path_key | sed 's/\.path/.url/')
+		url=$(git config -f .gitmodules --get "$url_key")
+		git submodule add $url $path
+	done
+
+```
