@@ -22,15 +22,7 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "views": {
-			"package-explorer": [
-				{
-					"id": "nodeDependencies",
-					"name": "Node Dependencies",
-					"icon": "media/dep.svg",
-					"contextualTitle": "Package Explorer"
-				}
-			],
+    "views": {			
 			"scm": [
 				{
 					"id": "gitHelper",
@@ -87,13 +79,24 @@
 				{
 					"command": "gitHelper.revealResource"
 				}
-			],
-			"view/title": [				
-				{
-					"command": "gitHelper.updateSubmodule",
-					"when": "view == scm",
-					"group": "navigation"
-				},
+			],      
+      "scm/title": [
+        {
+          "command": "gitHelper.PullAll",
+          "group": "inline"
+        },
+        {
+          "command": "gitHelper.ListSubModules",
+          "group": "inline"
+        }
+      ],
+      "scm/sourceControl": [
+        {
+        "command": "gitHelper.ListSubModules",
+        "group": "navigation"
+        }
+      ],
+			"view/title": [
         {
 					"command": "gitHelper.ListSubModules",
 					"when": "view == gitHelper",
@@ -119,15 +122,15 @@
 					"when": "view == gitHelper",
 					"group": "navigation"
 				}
-			],
-			"view/item/context": [				
-				{
-					"command": "gitHelper.refreshFile",
-					"when": "view == gitHelper && viewItem == file",
-					"group": "inline"
-				}
 			]
-		}
+		
+    },
+    "viewsWelcome": [
+      {
+        "view": "gitHelper",
+        "contents": "[Add Dependency](command:nodeDependencies.addEntry)\n[Add Dependency](command:nodeDependencies.addEntry)"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

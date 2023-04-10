@@ -1,6 +1,7 @@
 'use strict';
 
 import { ExtensionContext } from 'vscode';
+import * as vscode from 'vscode';
 import Logger from '../UI/Logger';
 import Command from './Command';
 
@@ -23,5 +24,7 @@ export default class PullAll extends Command {
 	static executeCommand(): void {
 		Logger.showOutput();
 		Command.exeCommand('git pull');
+
+		vscode.commands.executeCommand('gitHelper.updateSubmodule');
 	}
 }
