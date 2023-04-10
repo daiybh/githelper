@@ -1,71 +1,73 @@
-# GitHelper README
+# githelper
 
-This is the README for your extension "GitHelper". After writing up a brief description, we recommend including the following sections.
+'githelper' is an extension for VS Code that helps you preventing common problems when handling with Git-repositories. Specially the use of Submodules in a project, when done wrong, can introduce some unintended problems. This extension detects these problems, notifies and assists you with fixes. The fixes can be also applied automatically as soon as the problem is detected.
 
-## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
-For example if there is an image subfolder under your extension project workspace:
+It can monitor all folders in current workspace.
+ex: code opend "d:\\smallcodes"
+   there have
+   ``` 
+   dir d:\\smallcodes
 
-\!\[feature X\]\(images/feature-x.png\)
+   project1\
+      .git
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+   project2\
+      .git
+      .gitmodules
 
-## Requirements
+   project3\
+      [none GIt]
+   ```
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Project1 Project2 will be selectd.
 
-## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## init Extension
 
-For example:
+## add commands
 
-This extension contributes the following settings:
+   - [X] listALLSubmodule
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+   - [] restoreSubmodule
 
-## Known Issues
+      when we clone[use git cmd] one project from remote, this project with submodule,but we need restore it.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+   ``` bash restoreSubmodule
 
-## Release Notes
+      git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
+	while read path_key path
+	do
+		url_key=$(echo $path_key | sed 's/\.path/.url/')
+		url=$(git config -f .gitmodules --get "$url_key")
+		git submodule add $url $path
+	done
 
-Users appreciate release notes as you update your extension.
+   ```
+     
 
-### 1.0.0
+   - [] pullALLCommand
 
-Initial release of ...
+      update all [git] include submodules to HEAD.
 
-### 1.0.1
+## add status bar.
 
-Fixed issue #.
 
-### 1.1.0
 
-Added features X, Y, and Z.
 
----
+# scripts
 
-## Following extension guidelines
+All scripts
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+``` bash restoreSubmodule
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+      git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
+	while read path_key path
+	do
+		url_key=$(echo $path_key | sed 's/\.path/.url/')
+		url=$(git config -f .gitmodules --get "$url_key")
+		git submodule add $url $path
+	done
 
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+```
