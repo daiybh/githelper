@@ -24,7 +24,7 @@ export default class StatusBar {
 	 */
 	static initStatusBar(context: ExtensionContext): void {
 		StatusBar.statusbarItem = window.createStatusBarItem(StatusBarAlignment.Left, 0);
-		StatusBar.statusbarItem.command = 'git-assistant.showOutput';
+		StatusBar.statusbarItem.command = 'gitHelper.showOutput';
 		context.subscriptions.push(StatusBar.statusbarItem);
 		StatusBar.status = [];
 		StatusBar.tickCount = 0;

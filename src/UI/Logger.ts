@@ -12,7 +12,7 @@ export default class Logger {
 	 * registers a OutputChannel in VS Code
 	 */
 	static init(): void {
-		Logger.output = window.createOutputChannel('git-helper')
+		Logger.output = window.createOutputChannel('gitHelper')
 	}
 
 	/**

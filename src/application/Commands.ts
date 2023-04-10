@@ -1,10 +1,14 @@
-'use strict'
+'use strict';
 
 import { ExtensionContext } from 'vscode';
 import ShowOutputCommand from '../commands/ShowOutput.command';
 import ListSubmodules from '../commands/ListSubmodules.command';
+import PullAll from '../commands/PullAll.command';
+import UpdateSubmodule from '../commands/UpdateSubmodule.command';
+import RestoreSubmodule from '../commands/RestoreSubmodule.command';
 
-const COMMANDS = [ListSubmodules, ShowOutputCommand]
+
+const COMMANDS = [PullAll,UpdateSubmodule,RestoreSubmodule,ListSubmodules, ShowOutputCommand];
 /**
  * this class registers all commands displayed in the VS Code Command Pallette
  */
@@ -15,8 +19,8 @@ export default class Commands {
 	 */
 	static registerCommands(context: ExtensionContext): void {
 		COMMANDS.forEach((command) => {
-			command.registerCommand(context)
-		})
+			command.registerCommand(context);
+		});
 	}
 
 	/**
@@ -26,7 +30,7 @@ export default class Commands {
 	 */
 	static registerDummyCommands(context: ExtensionContext): void {
 		COMMANDS.forEach((command) => {
-			command.registerDummyCommand(context)
-		})
+			command.registerDummyCommand(context);
+		});
 	}
 }

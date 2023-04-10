@@ -8,13 +8,16 @@ import { getRepositoryName } from '../application/Helper'
  */
 export default class Status {
 	static startingExtension(): StatusItem {
-		return StatusItem.newAnimatedStatusItem(`loading git-assistant`)
+		return StatusItem.newAnimatedStatusItem(`loading gitHelper`)
+	}
+	static startingStatus(shortMsg:string):StatusItem{
+		return StatusItem.newAnimatedStatusItem(shortMsg);
 	}
 	static watcherRunning(): StatusItem {
-		return new StatusItem('git-assistant running')
+		return new StatusItem('gitHelper running')
 	}
 	static watcherRestarted(): StatusItem {
-		return StatusItem.newTemporaryStatusItem('git-assistant restarted')
+		return StatusItem.newTemporaryStatusItem('gitHelper restarted')
 	}
 	static configVariableSet(variable: string, input: string): StatusItem {
 		return StatusItem.newTemporaryStatusItem(`git-config variable '${variable}' set to '${input}'`)

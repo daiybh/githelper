@@ -22,22 +22,26 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
+    "commands": [      
       {
-        "command": "githelper.init",
-        "title": "githelper:init"
-      },
-      {
-        "command": "githelper.ListSubModules",
+        "command": "gitHelper.ListSubModules",
         "title": "githelper:ListSubModules"
       },
       {
-        "command": "githelper.restoreSubModule",
-        "title": "githelper:restoreSubModule"
+        "command": "gitHelper.restoreSubmodule",
+        "title": "githelper:restoreSubmodule"
       },
       {
-        "command": "githelper.pullALLCommand",
-        "title": "githelper:pullALLCommand"
+        "command": "gitHelper.showOutput",
+        "title": "githelper:showOutput"
+      },
+      {
+        "command": "gitHelper.updateSubmodule",
+        "title": "githelper:updateSubmodule"
+      },
+      {
+        "command": "gitHelper.PullAll",
+        "title": "githelper:PullAll"
       }
     ]
   },
