@@ -10,6 +10,8 @@ import { getWorkspacePath } from './application/Helper';
 import CMD from './application/CMD';
 
 import { exec } from 'child_process';
+import StatusBar from './UI/StatusBar';
+import Status from './UI/Status';
 const { spawn } = require('child_process');
 var ex=require('child_process').execSync;
 // This method is called when your extension is activated
@@ -43,6 +45,9 @@ export const activate = (ctx: vscode.ExtensionContext): void => {
 	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
 	myStatusBarItem.command = "githelper.restoreSubModule";
 	
+
+	StatusBar.initStatusBar(context);
+
 	ctx.subscriptions.push(myStatusBarItem);
 
 
@@ -128,6 +133,9 @@ const listSubModulesCommand = (): vscode.Disposable => {
 		// Display a message box to the user
 		Logger.showOutput();
 		Logger.showMessage("githelper.ListSubModules");
+		
+
+
 		access(getWorkspacePath() + '/.gitmodules', constants.F_OK, (err) => {
 
 			Logger.showMessage(`'ListSubModules ! ${getWorkspacePath() + '/.gitmodules'} ${err ? 'does not exist' : 'exists'}`, true);
@@ -135,6 +143,7 @@ const listSubModulesCommand = (): vscode.Disposable => {
 			if (err) { return; }
 			//await CMD.executeCommand('git submodule update --init')
 		});
+
 	});
 };
 
@@ -145,13 +154,17 @@ const pullALLCommand = (): vscode.Disposable => {
 		Logger.showOutput();
 		Logger.showMessage("githelper.pullALLCommand");
 
-		
+		const status = Status.startingExtension();
+	StatusBar.addStatus(status);
+
 		exec('git pull', { cwd: getWorkspacePath() }, (error: any, stdout: any, _stderr: any) => {
 			if (error !== null) {
 				Logger.showError(error);
 			}
 			//异步调用 结果会晚于 pullALLCommand22222222
 			Logger.showMessage(stdout.trim());
+			
+	StatusBar.removeStatus(status);
 		});
 
 		// 同步调用

@@ -5,6 +5,10 @@ import { readFile } from 'fs';
 import Git from '../models/Git';
 import Submodule from '../models/Submodule';
 import Logger from '../UI/Logger';
+import Status from '../UI/Status';
+import StatusBar from '../UI/StatusBar';
+import StatusItem from '../UI/StatusItem';
+import CMD from './CMD';
 import { getWorkspacePath, deepmerge } from './Helper';
 
 const unimportantGitFiles: string[] = ['lock', 'FETCH_HEAD', '.git/objects/'];
@@ -199,11 +203,11 @@ export default class GitRepository {
 			// fetch latest changes from Remote
 			await simplegit.fetch();
 		} catch (error) {
-			if (error.message.indexOf('unable to access')) {
+			/*if (error.message.indexOf('unable to access')) {
 				Logger.showMessage(`[repository] could not connect to Server`);
 			} else {
 				Logger.showMessage(`[repository] No remote repository found for ${repositoryPath}`);
-			}
+			}/**/
 		}
 
 		if (mainRepositoryPath) {
@@ -259,29 +263,10 @@ export default class GitRepository {
 			return newModel;
 		}
 
-		const tempDiff = deepdiff(newModel, oldModel) || [];
 
 		let diff: any = {};
 		// converts the deep-diff object to a Git-Model
-		tempDiff.forEach((object: any) => {
-			if (object.path[0] === 'oldModel') {
-				return;
-			}
-
-			let pathPointer = object.lhs;
-			object.path.reverse().forEach((pathSegment: string) => {
-				const obj: any = {};
-				obj[pathSegment] = pathPointer;
-				pathPointer = obj;
-			});
-
-			if (pathPointer.branches) {
-				pathPointer.branches = undefined;
-			}
-
-			diff = deepmerge(diff, pathPointer);
-		});
-
+		
 		return diff;
 	}
 
@@ -448,7 +433,7 @@ export default class GitRepository {
 					return resolve('');
 				}
 
-				const lines = data.match(/[^\r\n]+/g) || ([] as RegExpMatchArray);
+				const lines = data.match(/[^\r\n]+/g) || ([] as unknown as RegExpMatchArray);
 				let foundSubmodule = false;
 				lines.forEach((line) => {
 					if (line.includes('[submodule')) {

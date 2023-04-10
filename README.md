@@ -45,9 +45,9 @@ Project1 Project2 will be selectd.
    ```
      
 
-   - [] updateSubmodule
+   - [] pullALLCommand
 
-      update all submodule to HEAD.
+      update all [git] include submodules to HEAD.
 
 ## add status bar.
 
