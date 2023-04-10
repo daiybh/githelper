@@ -4,6 +4,7 @@
 
 
 
+## Features
 It can monitor all folders in current workspace.
 ex: code opend "d:\\smallcodes"
    there have
@@ -23,51 +24,16 @@ ex: code opend "d:\\smallcodes"
 
 Project1 Project2 will be selectd.
 
+## Release Notes
 
-## init Extension
+Users appreciate release notes as you update your extension.
 
-## add commands
+### 0.0.1
 
-   - [X] listALLSubmodule
+Initial release of ...
 
-   - [] restoreSubmodule
+### 0.0.2
 
-      when we clone[use git cmd] one project from remote, this project with submodule,but we need restore it.
+Add treeView in SCM
 
-   ``` bash restoreSubmodule
-
-      git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
-	while read path_key path
-	do
-		url_key=$(echo $path_key | sed 's/\.path/.url/')
-		url=$(git config -f .gitmodules --get "$url_key")
-		git submodule add $url $path
-	done
-
-   ```
-     
-
-   - [] pullALLCommand
-
-      update all [git] include submodules to HEAD.
-
-## add status bar.
-
-
-
-
-# scripts
-
-All scripts
-
-``` bash restoreSubmodule
-
-      git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
-	while read path_key path
-	do
-		url_key=$(echo $path_key | sed 's/\.path/.url/')
-		url=$(git config -f .gitmodules --get "$url_key")
-		git submodule add $url $path
-	done
-
-```
+**Enjoy!**

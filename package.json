@@ -22,28 +22,112 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "views": {
+			"package-explorer": [
+				{
+					"id": "nodeDependencies",
+					"name": "Node Dependencies",
+					"icon": "media/dep.svg",
+					"contextualTitle": "Package Explorer"
+				}
+			],
+			"scm": [
+				{
+					"id": "gitHelper",
+					"name": "gitHelper"
+				}
+				
+			]
+		},
     "commands": [      
       {
         "command": "gitHelper.ListSubModules",
-        "title": "githelper:ListSubModules"
+        "title": "githelper:ListSubModules",
+        "icon": {
+					"light": "resources/light/dependency.svg",
+					"dark": "resources/dark/dependency.svg"
+				}
       },
       {
         "command": "gitHelper.restoreSubmodule",
-        "title": "githelper:restoreSubmodule"
+        "title": "githelper:restoreSubmodule",
+        "icon": {
+					"light": "resources/light/edit.svg",
+					"dark": "resources/dark/edit.svg"
+				}
       },
       {
         "command": "gitHelper.showOutput",
-        "title": "githelper:showOutput"
+        "title": "githelper:showOutput",
+        "icon": {
+					"light": "resources/light/number.svg",
+					"dark": "resources/dark/number.svg"
+				}
       },
       {
         "command": "gitHelper.updateSubmodule",
-        "title": "githelper:updateSubmodule"
+        "title": "githelper:updateSubmodule",
+        "icon": {
+					"light": "resources/light/boolean.svg",
+					"dark": "resources/dark/boolean.svg"
+				}
       },
       {
         "command": "gitHelper.PullAll",
-        "title": "githelper:PullAll"
+        "title": "githelper:PullAll",
+        "icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
       }
-    ]
+      
+    ],
+    "menus": {
+			"commandPalette": [
+				{
+					"command": "gitHelper.revealResource"
+				}
+			],
+			"view/title": [				
+				{
+					"command": "gitHelper.updateSubmodule",
+					"when": "view == scm",
+					"group": "navigation"
+				},
+        {
+					"command": "gitHelper.ListSubModules",
+					"when": "view == gitHelper",
+					"group": "navigation"
+				},
+        {
+					"command": "gitHelper.restoreSubmodule",
+					"when": "view == gitHelper",
+					"group": "navigation"
+				},
+        {
+					"command": "gitHelper.showOutput",
+					"when": "view == gitHelper",
+					"group": "navigation"
+				},
+        {
+					"command": "gitHelper.updateSubmodule",
+					"when": "view == gitHelper",
+					"group": "navigation"
+				},
+        {
+					"command": "gitHelper.PullAll",
+					"when": "view == gitHelper",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [				
+				{
+					"command": "gitHelper.refreshFile",
+					"when": "view == gitHelper && viewItem == file",
+					"group": "inline"
+				}
+			]
+		}
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
