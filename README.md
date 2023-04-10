@@ -36,4 +36,10 @@ Initial release of ...
 
 Add treeView in SCM
 
+### 0.0.3
+
+add button into  source control bar.
+
+complate command 'pullALL'
+
 **Enjoy!**
