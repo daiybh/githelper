@@ -46,5 +46,8 @@ complate command 'pullALL'
 
 support restore the submodules.
 
+### 0.0.5
+
+Fix wrong path when restore submoduels
 
 **Enjoy!**
