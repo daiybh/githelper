@@ -67,9 +67,8 @@ url=git@bitbucket.org:id4tv/videoframegpumodule.git
 						curPath = a.replace('path=', '').trim();
 					}
 					else if (a.includes('url=')) {
-						let curUrl = a.replace('path=', '').trim();
-						foundSubmodule = false;
-						curPath = join(getWorkspacePath(), curPath);
+						let curUrl = a.replace('url=', '').trim();
+						foundSubmodule = false;						
 						console.warn(curPath);
 						console.warn(curUrl);
 						let fCmd=`git submodule add ${curUrl} ${curPath}`;
