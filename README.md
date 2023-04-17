@@ -42,4 +42,9 @@ add button into  source control bar.
 
 complate command 'pullALL'
 
+### 0.0.4
+
+support restore the submodules.
+
+
 **Enjoy!**
