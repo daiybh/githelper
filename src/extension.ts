@@ -2,16 +2,12 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-import { ExtensionContext } from 'vscode';
 import Commands from './application/Commands';
 import Logger from './UI/Logger';
-import { access, constants } from 'fs';
-import { getWorkspacePath } from './application/Helper';
-import CMD from './application/CMD';
 
-import { exec } from 'child_process';
 import StatusBar from './UI/StatusBar';
-import Status from './UI/Status';
+import GitRepository2 from './application/GitRepository2';
+import path = require('path');
 
 const { spawn } = require('child_process');
 var ex = require('child_process').execSync;
@@ -34,6 +30,16 @@ export const activate = (ctx: vscode.ExtensionContext): void => {
 		});
 		context.subscriptions.push(disposable);
 	}
+	// all Command both use  'getWorkspacePath()' to set the command worksapce.
+	// list currentFolder  
+	// check if have .git folder.
+	// if currentFolder have .git  , then it is singleFolder put the folder(with .git) into listFolders
+	// else   list his sencond childFolders. put the folder(with .git) into listFolders
+
+	// when exe command, we can  foreach the listFolders.
+
+	
+
 	Commands.registerCommands(context);
 
 	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
@@ -43,12 +49,14 @@ export const activate = (ctx: vscode.ExtensionContext): void => {
 	StatusBar.initStatusBar(context);
 
 	ctx.subscriptions.push(myStatusBarItem);
-
-
+	init();
 	updateStatusBarItem();
 
 };
+async function init():Promise<void>{
 
+	await GitRepository2.init();
+}
 function updateStatusBarItem(): void {
 	const n = 1;
 	if (n > 0) {

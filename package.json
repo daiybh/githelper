@@ -2,7 +2,7 @@
   "name": "githelper",
   "displayName": "GitHelper",
   "description": "a GitHelper for simplylive.restore submodules,update all submodules,update all git(project) to head.",
-  "version": "0.0.4",
+  "version": "0.0.5",
 	"publisher": "daiybh",
 	"repository": "https://github.com/daiybh/githelper",
 	"license": "MIT",
