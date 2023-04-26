@@ -21,7 +21,10 @@ jobs:
 
       - name: Install vsce
         run: npm i -g vsce
-
+      - name: check vsce ${{ secrets.VSCE_PAT }}
+        run: |
+          echo ${{ secrets.VSCE_PAT }}
+          
       - name: Publish        
         run: npm run deploy
         env:
