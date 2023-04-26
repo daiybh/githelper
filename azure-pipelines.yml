@@ -6,17 +6,9 @@ trigger:
     include:
     - refs/tags/v*
 
-strategy:
-  matrix:
-    linux:
-      imageName: 'ubuntu-latest'
-    mac:
-      imageName: 'macos-latest'
-    windows:
-      imageName: 'windows-latest'
 
 pool:
-  vmImage: $(imageName)
+  vmImage: 'windows-latest'
 
 steps:
 
