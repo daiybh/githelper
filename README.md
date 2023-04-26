@@ -54,4 +54,8 @@ Fix wrong path when restore submoduels
 
 Fix resotre submodules command.
 
+### 0.0.7
+
+Release by CI.
+
 **Enjoy!**
