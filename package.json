@@ -2,10 +2,10 @@
   "name": "githelper",
   "displayName": "GitHelper",
   "description": "a GitHelper for simplylive.restore submodules,update all submodules,update all git(project) to head.",
-  "version": "0.0.5",
-	"publisher": "daiybh",
-	"repository": "https://github.com/daiybh/githelper",
-	"license": "MIT",
+  "version": "0.0.7",
+  "publisher": "daiybh",
+  "repository": "https://github.com/daiybh/githelper",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.77.0"
   },
@@ -13,73 +13,71 @@
     "Other"
   ],
   "keywords": [
-		"git",
-		"submodule",
-		"helper"
-	],
+    "git",
+    "submodule",
+    "helper"
+  ],
   "activationEvents": [
     "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "views": {			
-			"scm": [
-				{
-					"id": "gitHelper",
-					"name": "gitHelper"
-				}
-				
-			]
-		},
-    "commands": [      
+    "views": {
+      "scm": [
+        {
+          "id": "gitHelper",
+          "name": "gitHelper"
+        }
+      ]
+    },
+    "commands": [
       {
         "command": "gitHelper.ListSubModules",
         "title": "githelper:ListSubModules",
         "icon": {
-					"light": "resources/light/dependency.svg",
-					"dark": "resources/dark/dependency.svg"
-				}
+          "light": "resources/light/dependency.svg",
+          "dark": "resources/dark/dependency.svg"
+        }
       },
       {
         "command": "gitHelper.restoreSubmodule",
         "title": "githelper:restoreSubmodule",
         "icon": {
-					"light": "resources/light/edit.svg",
-					"dark": "resources/dark/edit.svg"
-				}
+          "light": "resources/light/edit.svg",
+          "dark": "resources/dark/edit.svg"
+        }
       },
       {
         "command": "gitHelper.showOutput",
         "title": "githelper:showOutput",
         "icon": {
-					"light": "resources/light/number.svg",
-					"dark": "resources/dark/number.svg"
-				}
+          "light": "resources/light/number.svg",
+          "dark": "resources/dark/number.svg"
+        }
       },
       {
         "command": "gitHelper.updateSubmodule",
         "title": "githelper:updateSubmodule",
         "icon": {
-					"light": "resources/light/boolean.svg",
-					"dark": "resources/dark/boolean.svg"
-				}
+          "light": "resources/light/boolean.svg",
+          "dark": "resources/dark/boolean.svg"
+        }
       },
       {
         "command": "gitHelper.PullAll",
         "title": "githelper:PullAll",
         "icon": {
-					"light": "resources/light/refresh.svg",
-					"dark": "resources/dark/refresh.svg"
-				}
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
+        }
       }
-      
     ],
     "menus": {
-			"commandPalette": [
-				{
-					"command": "gitHelper.revealResource"
-				}
-			],      
+      "commandPalette": [
+        {
+          "command": "gitHelper.revealResource"
+        }
+      ],
       "scm/title": [
         {
           "command": "gitHelper.PullAll",
@@ -92,38 +90,37 @@
       ],
       "scm/sourceControl": [
         {
-        "command": "gitHelper.ListSubModules",
-        "group": "navigation"
+          "command": "gitHelper.ListSubModules",
+          "group": "navigation"
         }
       ],
-			"view/title": [
+      "view/title": [
         {
-					"command": "gitHelper.ListSubModules",
-					"when": "view == gitHelper",
-					"group": "navigation"
-				},
+          "command": "gitHelper.ListSubModules",
+          "when": "view == gitHelper",
+          "group": "navigation"
+        },
         {
-					"command": "gitHelper.restoreSubmodule",
-					"when": "view == gitHelper",
-					"group": "navigation"
-				},
+          "command": "gitHelper.restoreSubmodule",
+          "when": "view == gitHelper",
+          "group": "navigation"
+        },
         {
-					"command": "gitHelper.showOutput",
-					"when": "view == gitHelper",
-					"group": "navigation"
-				},
+          "command": "gitHelper.showOutput",
+          "when": "view == gitHelper",
+          "group": "navigation"
+        },
         {
-					"command": "gitHelper.updateSubmodule",
-					"when": "view == gitHelper",
-					"group": "navigation"
-				},
+          "command": "gitHelper.updateSubmodule",
+          "when": "view == gitHelper",
+          "group": "navigation"
+        },
         {
-					"command": "gitHelper.PullAll",
-					"when": "view == gitHelper",
-					"group": "navigation"
-				}
-			]
-		
+          "command": "gitHelper.PullAll",
+          "when": "view == gitHelper",
+          "group": "navigation"
+        }
+      ]
     },
     "viewsWelcome": [
       {
@@ -138,19 +135,21 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "test": "node ./out/test/runTest.js",
-    "lint:fix": "eslint --fix src/**/*.ts"
+    "lint:fix": "eslint --fix src/**/*.ts",
+    "deploy": "vsce publish --yarn"
   },
   "devDependencies": {
-    "@types/vscode": "^1.77.0",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.77.0",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
+    "@vscode/test-electron": "^2.3.0",
+    "@vscode/vsce": "^2.19.0",
     "eslint": "^8.36.0",
     "glob": "^8.1.0",
     "mocha": "^10.2.0",
-    "typescript": "^4.9.5",
-    "@vscode/test-electron": "^2.3.0"
+    "typescript": "^4.9.5"
   }
 }
