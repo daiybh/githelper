@@ -58,7 +58,7 @@ Fix resotre submodules command.
 
 Release by CI.
 
-### 0.08
+### 0.0.8
 
 support update submodules with it's config branch, default is master
 
