@@ -79,3 +79,10 @@ https://stackoverflow.com/questions/17714159/how-do-i-undo-a-single-branch-clone
    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
    git fetch origin
 ```
+
+
+get submoudle branchs
+
+```
+ git config --file .gitmodules --get-regex branch
+```
