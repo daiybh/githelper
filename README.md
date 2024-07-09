@@ -64,6 +64,6 @@ support update submodules with it's config branch, default is master
 
 ### 0.0.9
 
-pull all  just pull , don't update submodules
+pull all  just pull , don't update submodules ,later will comeback
 
 **Enjoy!**
