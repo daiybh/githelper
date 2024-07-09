@@ -25,6 +25,6 @@ export default class PullAll extends Command {
 		Logger.showOutput();
 		Command.exeCommand('git pull');
 
-		vscode.commands.executeCommand('gitHelper.updateSubmodule');
+		//vscode.commands.executeCommand('gitHelper.updateSubmodule');
 	}
 }

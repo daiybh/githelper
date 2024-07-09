@@ -62,4 +62,8 @@ Release by CI.
 
 support update submodules with it's config branch, default is master
 
+### 0.0.9
+
+pull all  just pull , don't update submodules
+
 **Enjoy!**
