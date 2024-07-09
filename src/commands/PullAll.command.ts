@@ -24,6 +24,17 @@ export default class PullAll extends Command {
 	static executeCommand(): void {
 		Logger.showOutput();
 		Command.exeCommand('git pull');
+// 遍历当前目录的所有一级子目录
+// 如果此子目录是git仓库，则执行git pull
+		vscode.workspace.findFiles('**/.git').then((files) => {
+			files.forEach((file) => {
+				Logger.showMessage(`pulling ${file.fsPath}`);
+				const uri = vscode.Uri.file(file.fsPath);
+				const dir = uri.fsPath.substring(0, uri.fsPath.lastIndexOf('/'));
+				Logger.showMessage(`pulling ${dir}`);
+				Command.exeCommand2('git pull', dir);
+			});
+		});
 
 		//vscode.commands.executeCommand('gitHelper.updateSubmodule');
 	}

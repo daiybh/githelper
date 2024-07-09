@@ -41,6 +41,10 @@ export default abstract class Command {
 	
 
 	static exeCommand(command: string): void {
+
+		this.exeCommand2(command,getWorkspacePath());
+	}
+	static exeCommand2(command: string,workSpace:string): void {
 		const status = Status.startingStatus(command.substring(0, 10));
 		StatusBar.addStatus(status);
 		exec(command, { cwd: getWorkspacePath() }, (error: any, stdout: any, _stderr: any) => {

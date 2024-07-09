@@ -66,4 +66,8 @@ support update submodules with it's config branch, default is master
 
 pull all  just pull , don't update submodules ,later will comeback
 
+### 0.0.10
+
+pull all support pulling all subfolder in  current folder
+
 **Enjoy!**
